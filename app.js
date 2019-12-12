@@ -20,35 +20,8 @@ app.get('/', (req, res) => {
   res.send('test')
 })
 
-//認證系統路由
-//登錄頁面
-app.get('/users/login', (req, res) => {
-  res.render('login')
-})
-
-//登錄檢查動作
-app.post('/users/login', (req, res) => {
-  res.send('login action')
-})
-
-//註冊頁面
-app.get('/users/register', (req, res) => {
-  res.render('register')
-})
-
-//註冊動作
-app.post('/users/register', (req, res) => {
-  User.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password
-  }).then(user => res.redirect('/'))
-})
-
-//登出
-app.get('/users/logout', (req, res) => {
-  res.redirect('/')
-})
+//使用路由
+app.use('/users', require('./routes/users'))
 
 app.listen(3000, () => {
   console.log('app is listening on port 3000')
