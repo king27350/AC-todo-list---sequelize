@@ -12,7 +12,7 @@ router.get('/login', (req, res) => {
 })
 
 //登錄檢查動作
-router.post('/login', (req, res) => {
+router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/users/login'
