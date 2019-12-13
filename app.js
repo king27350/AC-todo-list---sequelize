@@ -29,12 +29,10 @@ app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
-//首頁
-app.get('/', (req, res) => {
-  res.send('test')
-})
+
 
 //使用路由
+app.use('/', require('./routes/home'))
 app.use('/users', require('./routes/users'))
 
 app.listen(3000, () => {
