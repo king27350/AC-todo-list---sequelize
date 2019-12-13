@@ -33,7 +33,8 @@ app.use(methodOverride('_method'))
 
 //使用路由
 app.use('/', require('./routes/home'))
-app.use('/users', require('./routes/users'))
+app.use('/users', require('./routes/user'))
+app.use('/todos', require('./routes/todo'))
 
 app.listen(3000, () => {
   console.log('app is listening on port 3000')
