@@ -29,7 +29,10 @@ app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
-
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated
+  next()
+})
 
 //使用路由
 app.use('/', require('./routes/home'))
