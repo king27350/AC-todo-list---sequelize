@@ -9,6 +9,7 @@ const Todo = db.Todo
 const User = db.User
 const session = require('express-session')
 const passport = require('passport')
+const flash = require('connect-flash')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
   res.locals.user = req.user
   next()
 })
+app.use(flash())
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -35,6 +37,8 @@ app.use(methodOverride('_method'))
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
