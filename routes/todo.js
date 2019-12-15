@@ -41,7 +41,7 @@ router.get('/:id', authenticated, (req, res) => {
         }
       })
     })
-    .then((todo) => { return res.render('detail', { todo: todo }) })
+    .then((todo) => { return res.render('detail', { todo: todo, style: {} }) })
     .catch((error) => { return res.status(422).json(error) })
 })
 
